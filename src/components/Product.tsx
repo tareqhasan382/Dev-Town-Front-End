@@ -1,8 +1,182 @@
 const Product = () => {
   return (
-    <div className=" bg-slate-200 px-1 lg:flex gap:[1%] justify-between h-full ">
-      <div className=" bg-red-200 w-[18%] ">
-        <h1>Filter</h1>
+    <div className=" bg-gray-100 px-1 lg:flex gap:[1%] justify-between h-full rounded-md ">
+      <div className=" lg:w-[18%]  ">
+        <div className=" px-1 hidden md:block ">
+          {/* sort by */}
+          <div className=" py-2 ">
+            <label htmlFor="sort" className="font-semibold">
+              Sort By
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+              id="sort"
+            >
+              <option value="">Default sorting </option>
+              <option value="asc">Price (Low to High)</option>
+              <option value="desc">Price (Hign to Low)</option>
+            </select>
+          </div>
+          <h3 className=" font-semibold ">Price Range</h3>
+          {/* price Range */}
+          <div className=" flex gap-2 items-center py-2 ">
+            <input
+              type="number"
+              placeholder="min"
+              className=" p-2 w-[70px] rounded "
+            />
+            <p className=" text-xl font-bold ">-</p>
+            <input
+              type="number"
+              placeholder="max"
+              className=" p-2 w-[70px] rounded "
+            />
+          </div>
+          {/* ram */}
+          <div>
+            <label htmlFor="ram" className="font-semibold py-2 ">
+              RAM
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+              id="ram"
+            >
+              <option value="">Default</option>
+              <option value="2GB">2GB</option>
+              <option value="3GB">3GB</option>
+              <option value="4GB">4GB</option>
+              <option value="6GB">6GB</option>
+              <option value="6GB">8GB</option>
+              <option value="6GB">12GB</option>
+              <option value="6GB">16GB</option>
+            </select>
+          </div>
+          {/* Internal Storage */}
+          <div className=" py-2 ">
+            <label htmlFor="memor" className="font-semibold py-2 ">
+              Internal Storage
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+              id="memorySize"
+            >
+              <option value="">Default</option>
+              <option value="2GB">32GB</option>
+              <option value="3GB">64GB</option>
+              <option value="4GB">128GB</option>
+              <option value="6GB">256GB</option>
+              <option value="6GB">512GB</option>
+            </select>
+          </div>
+          {/* Battery */}
+          <div className=" py-2 ">
+            <label htmlFor="battery" className="font-semibold py-2 ">
+              Battery
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+              id="memorySize"
+            >
+              <option value="">Default</option>
+              <option value="2GB">2000 to 2999 mAh</option>
+              <option value="2GB">3000 to 3999 mAh</option>
+              <option value="2GB">4000 to 4999 mAh</option>
+              <option value="2GB">5000 to 5999 mAh</option>
+              <option value="2GB">6000 to 6999 mAh</option>
+            </select>
+          </div>
+        </div>
+        <details className=" px-1 md:hidden transition duration-150 ease-in ">
+          <summary>Sort and Filtering</summary>
+          <div className=" flex gap-2 ">
+            {/* sort by */}
+            <div className=" py-2 ">
+              <label htmlFor="sort" className="font-semibold">
+                Sort By
+              </label>
+              <select
+                className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                id="sort"
+              >
+                <option value="">Default sorting </option>
+                <option value="asc">Price (Low to High)</option>
+                <option value="desc">Price (Hign to Low)</option>
+              </select>
+            </div>
+            <div>
+              <h3 className=" font-semibold ">Price Range</h3>
+              {/* price Range */}
+              <div className=" flex gap-2 items-center py-2 ">
+                <input
+                  type="number"
+                  placeholder="min"
+                  className=" p-2 w-[70px] rounded "
+                />
+                <p className=" text-xl font-bold ">-</p>
+                <input
+                  type="number"
+                  placeholder="max"
+                  className=" p-2 w-[70px] rounded "
+                />
+              </div>
+            </div>
+          </div>
+          <div className=" flex gap-3 items-center ">
+            {/* ram */}
+            <div>
+              <label htmlFor="ram" className="font-semibold py-2 ">
+                RAM
+              </label>
+              <select
+                className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                id="ram"
+              >
+                <option value="">Default</option>
+                <option value="2GB">2GB</option>
+                <option value="3GB">3GB</option>
+                <option value="4GB">4GB</option>
+                <option value="6GB">6GB</option>
+                <option value="6GB">8GB</option>
+                <option value="6GB">12GB</option>
+                <option value="6GB">16GB</option>
+              </select>
+            </div>
+            {/* Internal Storage */}
+            <div className=" py-2 ">
+              <label htmlFor="memor" className="font-semibold py-2 ">
+                Internal Storage
+              </label>
+              <select
+                className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+                id="memorySize"
+              >
+                <option value="">Default</option>
+                <option value="2GB">32GB</option>
+                <option value="3GB">64GB</option>
+                <option value="4GB">128GB</option>
+                <option value="6GB">256GB</option>
+                <option value="6GB">512GB</option>
+              </select>
+            </div>
+          </div>
+          {/* Battery */}
+          <div className=" py-2 ">
+            <label htmlFor="battery" className="font-semibold py-2 ">
+              Battery
+            </label>
+            <select
+              className="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline"
+              id="memorySize"
+            >
+              <option value="">Default</option>
+              <option value="2GB">2000 to 2999 mAh</option>
+              <option value="2GB">3000 to 3999 mAh</option>
+              <option value="2GB">4000 to 4999 mAh</option>
+              <option value="2GB">5000 to 5999 mAh</option>
+              <option value="2GB">6000 to 6999 mAh</option>
+            </select>
+          </div>
+        </details>
       </div>
       <div className=" lg:w-[81%] gap-3 ">
         {/*   */}
