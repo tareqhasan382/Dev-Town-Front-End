@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { isLoggedIn } from "../utils/local-storage";
 import { useUserProfileQuery } from "../redux/api/authApi";
 
-import EnrollCart from "./EnrollCart";
 const UserProfile = () => {
   const { data } = useUserProfileQuery(undefined);
   const course = data?.data;
@@ -57,7 +56,7 @@ const UserProfile = () => {
             Instructor: {enrollData?.courseId?.instructor}
           </h2>
         </div> */}
-        <EnrollCart />
+        {/* <EnrollCart /> */}
       </div>
     </div>
   );

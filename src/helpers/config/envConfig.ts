@@ -1,5 +1,5 @@
 export const getBaseUrl = (): string => {
-  return "https://alemeno-backend-eight.vercel.app";
+  return "http://localhost:5000";
 };
 
-// http://localhost:8000 || https://alemeno-backend-eight.vercel.app
+// http://localhost:5000/api/v1/products || https://alemeno-backend-eight.vercel.app

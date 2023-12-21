@@ -4,7 +4,6 @@ import App from "../../App";
 import Login from "../Login";
 import Register from "../Register";
 import NotFound from "../NotFound";
-import CourseDetails from "../CourseDetails";
 import UserProfile from "../UserProfile";
 import AddCourse from "../dashboard/AddCourse";
 const routes = createBrowserRouter([
@@ -15,10 +14,6 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <App />,
-      },
-      {
-        path: "/courseDetails/:id",
-        element: <CourseDetails />,
       },
       {
         path: "/myprofile",
