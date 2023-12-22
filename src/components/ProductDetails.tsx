@@ -9,16 +9,16 @@ const ProductDetails = () => {
 
   return (
     <div className=" py-6 ">
+      <h1 className=" text-center text-2xl font-bold py-3 bg-gray-800 text-white  ">
+        Product Details
+      </h1>
       {isLoading && (
-        <div className=" w-screen h-screen bg-slate-500 ">
+        <div className=" w-full h-screen bg-slate-500 ">
           <h1 className=" text-2xl font-bold text-center text-white ">
             Loding...
           </h1>
         </div>
       )}
-      <h1 className=" text-center text-2xl font-bold py-3 bg-gray-800 text-white  ">
-        Product Details
-      </h1>
       {!isLoading && (
         <div className=" flex flex-col gap-3 ">
           {/* img */}
