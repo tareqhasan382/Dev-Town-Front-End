@@ -6,7 +6,7 @@ import Register from "../Register";
 import NotFound from "../NotFound";
 import UserProfile from "../UserProfile";
 import AddCourse from "../dashboard/AddCourse";
-import ProductDetails from "../productDetails";
+import ProductDetails from "../ProductDetails";
 const routes = createBrowserRouter([
   {
     path: "/",
