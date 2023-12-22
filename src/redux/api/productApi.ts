@@ -16,6 +16,13 @@ export const productApi = baseApi.injectEndpoints({
         method: "GET",
       }),
     }),
+    //"/product/:id"
+    productDetails: build.query({
+      query: (id) => ({
+        url: `/api/v1/product/${id}`,
+        method: "GET",
+      }),
+    }),
     userProfile: build.query({
       query: () => ({
         url: "/api/users",
@@ -28,5 +35,6 @@ export const productApi = baseApi.injectEndpoints({
 export const {
   useAddProductMutation,
   useGetProductsQuery,
+  useProductDetailsQuery,
   useUserProfileQuery,
 } = productApi;

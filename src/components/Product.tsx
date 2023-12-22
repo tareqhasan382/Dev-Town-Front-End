@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/productApi";
 import { IProducts } from "../types/common";
 
@@ -186,46 +187,53 @@ const Product = () => {
         </details>
       </div>
       <div className=" lg:w-[81%] gap-3 ">
+        {isLoading && (
+          <div className=" w-full h-full ">
+            <h1 className=" text-2xl font-bold text-center  ">Loding...</h1>
+          </div>
+        )}
         {/*   */}
         <div className=" w-full grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 xsm:grid-clos-1 my-2 gap-3 ">
           {!isLoading &&
             products?.map((item: IProducts) => (
-              <div
-                key={item?._id}
-                className=" hover:shadow-lg duration-150 bg-white/90 flex flex-col text-black p-2 gap-2 rounded  "
-              >
-                <img
-                  src={item?.img}
-                  alt="phone"
-                  className=" object-cover rounded mb-3 "
-                />
-                <div className=" lg:h-[250px] md:h-[200px] ">
-                  <h3 className=" text-sm font-bold ">{item?.name} </h3>
-                  <p className=" text-sm font-semibold ">
-                    Price: <span className=" font-bold ">${item?.price}</span>
-                  </p>
-                  <p>
-                    Display:{item?.display?.size}"+
-                    {item?.display?.resolution.slice(0, 17)}
-                  </p>
-                  {/* 6.52" HD+ (720 x 1600) */}
-                  <p>Processor:{item?.processor?.chipset}</p>
-                  <p>
-                    Camera:{item?.camera?.front?.resolution} Front +
-                    {item?.camera?.rear?.resolution.slice(0, 4)} Rear
-                  </p>
-                  <p>Features: Rear-mounted Fingerprint</p>
+              <Link to={`/productDetails/${item?._id}`}>
+                <div
+                  key={item?._id}
+                  className=" hover:shadow-lg duration-150 bg-white/90 flex flex-col text-black p-2 gap-2 rounded  "
+                >
+                  <img
+                    src={item?.img}
+                    alt="phone"
+                    className=" object-cover rounded mb-3 "
+                  />
+                  <div className=" lg:h-[250px] md:h-[200px] ">
+                    <h3 className=" text-sm font-bold ">{item?.name} </h3>
+                    <p className=" text-sm font-semibold ">
+                      Price: <span className=" font-bold ">${item?.price}</span>
+                    </p>
+                    <p>
+                      Display:{item?.display?.size}"+
+                      {item?.display?.resolution.slice(0, 17)}
+                    </p>
+                    {/* 6.52" HD+ (720 x 1600) */}
+                    <p>Processor:{item?.processor?.chipset}</p>
+                    <p>
+                      Camera:{item?.camera?.front?.resolution} Front +
+                      {item?.camera?.rear?.resolution.slice(0, 4)} Rear
+                    </p>
+                    <p>Features:{item?.features?.fingerprint} </p>
+                  </div>
+                  <div className=" flex lg:flex-col gap-3 lg:gap-0 ">
+                    <button className=" bg-blue-500 hover:bg-blue-700 duration-300 text-white w-full my-2 py-2 rounded font-semibold ">
+                      buy Now
+                    </button>
+                    <button className=" bg-slate-300 hover:bg-slate-400 duration-300 text-black w-full my-2 py-2 rounded font-semibold ">
+                      Add To Cart
+                    </button>
+                    {/* bg-blue-500 hover:bg-blue-700 */}
+                  </div>
                 </div>
-                <div className=" flex lg:flex-col gap-3 lg:gap-0 ">
-                  <button className=" bg-blue-500 hover:bg-blue-700 duration-300 text-white w-full my-2 py-2 rounded font-semibold ">
-                    buy Now
-                  </button>
-                  <button className=" bg-slate-300 hover:bg-slate-400 duration-300 text-black w-full my-2 py-2 rounded font-semibold ">
-                    Add To Cart
-                  </button>
-                  {/* bg-blue-500 hover:bg-blue-700 */}
-                </div>
-              </div>
+              </Link>
             ))}
         </div>
       </div>

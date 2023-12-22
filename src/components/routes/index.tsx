@@ -6,6 +6,7 @@ import Register from "../Register";
 import NotFound from "../NotFound";
 import UserProfile from "../UserProfile";
 import AddCourse from "../dashboard/AddCourse";
+import ProductDetails from "../productDetails";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +19,10 @@ const routes = createBrowserRouter([
       {
         path: "/myprofile",
         element: <UserProfile />,
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails />,
       },
       {
         path: "/login",
