@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "./baseApi";
 // /auth/login
 export const productApi = baseApi.injectEndpoints({
@@ -11,9 +12,10 @@ export const productApi = baseApi.injectEndpoints({
       invalidatesTags: ["product"],
     }),
     getProducts: build.query({
-      query: () => ({
+      query: (arg: Record<string, any>) => ({
         url: "/api/v1/products",
         method: "GET",
+        params: arg,
       }),
     }),
     //"/product/:id"

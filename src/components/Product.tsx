@@ -1,12 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/productApi";
 import { IProducts } from "../types/common";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
-const Product = () => {
-  const { data, isLoading } = useGetProductsQuery(undefined);
+const Product: React.FC = () => {
+  // page, limit, search, filterField, sortOrder, sortField
+  // ?sortField=date&sortOrder=-1
+  const query: Record<string, any> = {};
+  const { tags } = useSelector((state: RootState) => state.filter);
+  // query["name"] = search;
+  query["name"] = tags;
+
+  const { data, isLoading } = useGetProductsQuery({ ...query });
   const products = data?.data;
-  console.log("data:", data?.data);
-  console.log("isLoading:", isLoading);
+  console.log("data count:", products?.length);
+  //console.log("isLoading:", isLoading);
   return (
     <div className=" bg-gray-100 px-1 lg:flex gap:[1%] justify-between h-full rounded-md ">
       <div className=" lg:w-[18%]  ">
@@ -192,48 +202,58 @@ const Product = () => {
             <h1 className=" text-2xl font-bold text-center  ">Loding...</h1>
           </div>
         )}
+
         {/*   */}
         <div className=" w-full grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 xsm:grid-clos-1 my-2 gap-3 ">
+          {products?.length <= 0 && (
+            <div className=" w-full h-full ">
+              <h1 className=" text-2xl font-bold text-center items-center justify-center mt-10 ">
+                Unavailable Products
+              </h1>
+            </div>
+          )}
           {!isLoading &&
             products?.map((item: IProducts) => (
-              <Link to={`/productDetails/${item?._id}`}>
-                <div
-                  key={item?._id}
-                  className=" hover:shadow-lg duration-150 bg-white/90 flex flex-col text-black p-2 gap-2 rounded  "
-                >
-                  <img
-                    src={item?.img}
-                    alt="phone"
-                    className=" object-cover rounded mb-3 "
-                  />
-                  <div className=" lg:h-[250px] md:h-[200px] ">
-                    <h3 className=" text-sm font-bold ">{item?.name} </h3>
-                    <p className=" text-sm font-semibold ">
-                      Price: <span className=" font-bold ">${item?.price}</span>
-                    </p>
-                    <p>
-                      Display:{item?.display?.size}"+
-                      {item?.display?.resolution.slice(0, 17)}
-                    </p>
-                    {/* 6.52" HD+ (720 x 1600) */}
-                    <p>Processor:{item?.processor?.chipset}</p>
-                    <p>
-                      Camera:{item?.camera?.front?.resolution} Front +
-                      {item?.camera?.rear?.resolution.slice(0, 4)} Rear
-                    </p>
-                    <p>Features:{item?.features?.fingerprint} </p>
-                  </div>
-                  <div className=" flex lg:flex-col gap-3 lg:gap-0 ">
-                    <button className=" bg-blue-500 hover:bg-blue-700 duration-300 text-white w-full my-2 py-2 rounded font-semibold ">
-                      buy Now
-                    </button>
-                    <button className=" bg-slate-300 hover:bg-slate-400 duration-300 text-black w-full my-2 py-2 rounded font-semibold ">
-                      Add To Cart
-                    </button>
-                    {/* bg-blue-500 hover:bg-blue-700 */}
-                  </div>
+              <div
+                key={item?._id}
+                className=" hover:shadow-lg duration-150 bg-white/90 flex flex-col text-black p-2 gap-2 rounded  "
+              >
+                <img
+                  src={item?.img}
+                  alt="phone"
+                  className=" object-cover rounded mb-3 "
+                />
+                <div className=" lg:h-[250px] md:h-[200px] ">
+                  <Link to={`/productDetails/${item._id}`}>
+                    <h3 className=" text-sm font-bold text-blue-700  ">
+                      {item?.name}{" "}
+                    </h3>
+                  </Link>
+                  <p className=" text-sm font-semibold ">
+                    Price: <span className=" font-bold ">${item?.price}</span>
+                  </p>
+                  <p>
+                    Display:{item?.display?.size}"+
+                    {item?.display?.resolution.slice(0, 17)}
+                  </p>
+                  {/* 6.52" HD+ (720 x 1600) */}
+                  <p>Processor:{item?.processor?.chipset}</p>
+                  <p>
+                    Camera:{item?.camera?.front?.resolution} Front +
+                    {item?.camera?.rear?.resolution.slice(0, 4)} Rear
+                  </p>
+                  <p>Features:{item?.features?.fingerprint} </p>
                 </div>
-              </Link>
+                <div className=" flex lg:flex-col gap-3 lg:gap-0 ">
+                  <button className=" bg-blue-500 hover:bg-blue-700 duration-300 text-white w-full my-2 py-2 rounded font-semibold ">
+                    buy Now
+                  </button>
+                  <button className=" bg-slate-300 hover:bg-slate-400 duration-300 text-black w-full my-2 py-2 rounded font-semibold ">
+                    Add To Cart
+                  </button>
+                  {/* bg-blue-500 hover:bg-blue-700 */}
+                </div>
+              </div>
             ))}
         </div>
       </div>
